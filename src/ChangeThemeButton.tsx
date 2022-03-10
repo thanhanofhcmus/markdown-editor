@@ -18,6 +18,12 @@ export const ChangeThemeButton = () => {
 	}
 
 	return (
-		<IconButton icon={themeIcon} onClick={toggleTheme} />
+		<IconButton
+		className="border-[1px] border-fg-light dark:border-fg-dark
+		rounded-md
+		transition ease-in duration-150
+		"
+		icon={themeIcon}
+		onClick={toggleTheme} />
 	)
 };

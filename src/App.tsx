@@ -17,7 +17,7 @@ const App = () => {
 	})
 	return (
 		<ThemeContext.Provider value={{ theme, setTheme }}>
-			<div className={`${theme} transition-all ease-in`}>
+			<div className={`${theme}`}>
 				{/* <Sidebar /> */}
 
 				<SplitView

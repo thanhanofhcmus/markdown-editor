@@ -10,11 +10,7 @@ interface Props {
 
 export const IconButton = ({ icon, className, width, height, onClick }: Props) => {
 	return (
-		<button className={`relative flex items-center justify-center
-		my-2 mx-auto rounded-xl
-		${className ?? className}
-		transition-all ease-in duration-150
-		`}
+		<button className={`relative flex items-center justify-center ${className ?? className}`}
 		style={{
 			width: width ?? 32,
 			height: height ?? 32,
