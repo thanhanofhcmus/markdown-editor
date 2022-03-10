@@ -28,12 +28,13 @@ const LeftPanel = ({ leftWidth, setLeftWidth, children }: LeftPanelProps) => {
 interface SplitViewProps {
 	left: React.ReactElement;
 	right: React.ReactElement;
+	defaultLeftWidth?: number;
 	leftMinWidth?: number;
 	leftMaxWidth?: number;
 }
 
-export const SplitView = ({ left, right, leftMinWidth, leftMaxWidth }: SplitViewProps) => {
-	const [leftWidth, setLeftWidth] = React.useState<number | undefined>(100);
+export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMaxWidth }: SplitViewProps) => {
+	const [leftWidth, setLeftWidth] = React.useState<number | undefined>(defaultLeftWidth);
 	const [sepXPos, setSepXPos] = React.useState<number | undefined>(undefined);
 	const [dragging, setDragging] = React.useState(false);
 
@@ -83,6 +84,7 @@ export const SplitView = ({ left, right, leftMinWidth, leftMaxWidth }: SplitView
 			</LeftPanel>
 			<div className="cursor-col-resize flex self-stretch items-center
 			border-2 border-gray-300 dark:border-gray-400
+			shadow-md
 			h-screen
 			"
 				onMouseDown={onMouseDown}
