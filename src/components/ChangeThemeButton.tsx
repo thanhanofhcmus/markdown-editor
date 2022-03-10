@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IconButton } from "./IconButton";
-import { ThemeContext } from "./App";
+import { ThemeContext } from "../App";
 import { BsSunFill, BsMoonFill } from "react-icons/bs";
 
 export const ChangeThemeButton = () => {

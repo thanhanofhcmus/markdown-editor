@@ -1,8 +1,8 @@
 import * as React from "react";
 // import { Sidebar } from "./Sidebar";
-import { ContentContainer } from "./ContentContainer";
-import { SplitView } from "./SplitView";
-import { ChannelBar } from "./ChannelBar";
+import { ContentContainer } from "./components/ContentContainer";
+import { SplitView } from "./components/SplitView";
+import { ChannelBar } from "./components/ChannelBar";
 import { applyTheme } from "./themes/utils";
 
 const ThemeContext = React.createContext({
