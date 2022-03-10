@@ -6,7 +6,7 @@ interface LeftPanelProps {
 	children?: React.ReactNode;
 }
 
-const LeftPanel = ({ leftWidth, setLeftWidth, children} : LeftPanelProps) => {
+const LeftPanel = ({ leftWidth, setLeftWidth, children }: LeftPanelProps) => {
 	const leftRef = React.createRef<HTMLDivElement>();
 
 	React.useEffect(() => {
@@ -28,22 +28,31 @@ const LeftPanel = ({ leftWidth, setLeftWidth, children} : LeftPanelProps) => {
 interface SplitViewProps {
 	left: React.ReactElement;
 	right: React.ReactElement;
+	leftMinWidth?: number;
+	leftMaxWidth?: number;
 }
 
-export const SplitView = ({left, right}: SplitViewProps) => {
+export const SplitView = ({ left, right, leftMinWidth, leftMaxWidth }: SplitViewProps) => {
 	const [leftWidth, setLeftWidth] = React.useState<number | undefined>(100);
 	const [sepXPos, setSepXPos] = React.useState<number | undefined>(undefined);
 	const [dragging, setDragging] = React.useState(false);
 
-	const onMouseDown  = (e: React.MouseEvent) => {
+	const onMouseDown = (e: React.MouseEvent) => {
 		setSepXPos(e.clientX);
 		setDragging(true);
 	};
 
 	const onMouseMove = (e: MouseEvent) => {
-		e.preventDefault();
 		if (dragging && leftWidth && sepXPos) {
-			const newLeftWidth = leftWidth + e.clientX - sepXPos;
+			let newLeftWidth = leftWidth + e.clientX - sepXPos;
+
+			if (leftMinWidth) {
+				newLeftWidth = Math.max(leftMinWidth, newLeftWidth);
+			}
+			if (leftMaxWidth) {
+				newLeftWidth = Math.min(leftMaxWidth, newLeftWidth);
+			}
+
 			setSepXPos(e.clientX);
 			setLeftWidth(newLeftWidth);
 		}
@@ -51,14 +60,14 @@ export const SplitView = ({left, right}: SplitViewProps) => {
 
 	const onMouseUp = () => {
 		setDragging(false);
-	}
+	};
 
 	React.useEffect(() => {
 		document.addEventListener("mousemove", onMouseMove);
 		document.addEventListener("mouseup", onMouseUp);
-		
+
 		return () => {
-		document.removeEventListener("mousemove", onMouseMove);
+			document.removeEventListener("mousemove", onMouseMove);
 			document.removeEventListener("mouseup", onMouseUp);
 		}
 	});
@@ -66,11 +75,18 @@ export const SplitView = ({left, right}: SplitViewProps) => {
 
 	return (
 		<div className="flex flex-row items-start">
-			<LeftPanel leftWidth={leftWidth} setLeftWidth={setLeftWidth}>{left}</LeftPanel>
-			<div className="cursor-col-resize flex self-stretch items-center"
-			onMouseDown={onMouseDown}
+			<LeftPanel
+				leftWidth={leftWidth}
+				setLeftWidth={setLeftWidth}
 			>
-				<div className="h-screen border-[1px] border-gray-300 dark:border-gray-400"></div>
+				{left}
+			</LeftPanel>
+			<div className="cursor-col-resize flex self-stretch items-center
+			border-2 border-gray-300 dark:border-gray-400
+			h-screen
+			"
+				onMouseDown={onMouseDown}
+			>
 			</div>
 			<div className="flex-1">{right}</div>
 		</div>
