@@ -3,6 +3,7 @@ import * as React from "react";
 import { ContentContainer } from "./ContentContainer";
 import { SplitView } from "./SplitView";
 import { ChannelBar } from "./ChannelBar";
+import { applyTheme } from "./themes/utils";
 
 const ThemeContext = React.createContext({
 	theme: "",
@@ -11,6 +12,9 @@ const ThemeContext = React.createContext({
 
 const App = () => {
 	const [theme, setTheme] = React.useState("light");
+	React.useEffect(() => {
+		applyTheme("base");
+	})
 	return (
 		<ThemeContext.Provider value={{ theme, setTheme }}>
 			<div className={`${theme} transition-all ease-in`}>
