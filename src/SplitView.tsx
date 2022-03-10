@@ -38,12 +38,21 @@ export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMax
 	const [sepXPos, setSepXPos] = React.useState<number | undefined>(undefined);
 	const [dragging, setDragging] = React.useState(false);
 
+
 	const onMouseDown = (e: React.MouseEvent) => {
+		e.preventDefault();
+		e.stopPropagation();
+		e.bubbles = false;
+
 		setSepXPos(e.clientX);
 		setDragging(true);
 	};
 
 	const onMouseMove = (e: MouseEvent) => {
+		e.stopPropagation();
+		e.preventDefault();
+		e.cancelBubble = true;
+
 		if (dragging && leftWidth && sepXPos) {
 			let newLeftWidth = leftWidth + e.clientX - sepXPos;
 
@@ -82,11 +91,12 @@ export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMax
 			>
 				{left}
 			</LeftPanel>
-			<div className="cursor-col-resize flex self-stretch items-center
-			border-2 border-gray-300 dark:border-gray-400
-			shadow-md
-			h-screen
-			"
+			<div className={`cursor-col-resize flex self-stretch items-center
+			border-2 h-screen transition
+			${dragging
+				? "border-blue-500"
+				: "border-bg-light-secondary dark:border-bg-dark-secondary" }
+			`}
 				onMouseDown={onMouseDown}
 			>
 			</div>
