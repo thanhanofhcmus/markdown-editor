@@ -20,7 +20,7 @@ const Sidebar = () => {
 	}
 
 	return (
-		<div className="h-screen w-16 flex flex-col
+		<div className="h-screen w-20 flex flex-col
 		bg-gray-100 text-blue-500 border-r-2 border-blue-100
     dark:bg-gray-700 dark:text-orange-400 dark:border-gray-500
 		">

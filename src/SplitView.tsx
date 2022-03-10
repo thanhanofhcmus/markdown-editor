@@ -22,7 +22,7 @@ const LeftPanel = ({ leftWidth, setLeftWidth, children} : LeftPanelProps) => {
 		leftRef.current.style.width = `${leftWidth}px`;
 	}, [leftRef, leftWidth, setLeftWidth])
 
-	return (<div ref={leftRef} className="h-full">{children}</div>);
+	return (<div ref={leftRef}>{children}</div>);
 };
 
 interface SplitViewProps {
@@ -65,14 +65,14 @@ export const SplitView = ({left, right}: SplitViewProps) => {
 
 
 	return (
-		<div className="h-full flex flex-row items-start">
+		<div className="flex flex-row items-start">
 			<LeftPanel leftWidth={leftWidth} setLeftWidth={setLeftWidth}>{left}</LeftPanel>
 			<div className="cursor-col-resize flex self-stretch items-center"
 			onMouseDown={onMouseDown}
 			>
-				<div className="h-full border-[1px] border-gray-300 dark:border-gray-400"></div>
+				<div className="h-screen border-[1px] border-gray-300 dark:border-gray-400"></div>
 			</div>
-			<div className="h-full flex-1">{right}</div>
+			<div className="flex-1">{right}</div>
 		</div>
 	);
 };
