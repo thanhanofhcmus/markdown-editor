@@ -4,19 +4,28 @@ import { ContentContainer } from "./components/ContentContainer";
 import { SplitView } from "./components/SplitView";
 import { ChannelBar } from "./components/ChannelBar";
 import { applyTheme } from "./themes/utils";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
-const ThemeContext = React.createContext({
+const DarkModeContext = React.createContext({
 	theme: "",
 	setTheme: (_: string) => { } // placeholder
 });
 
 const App = () => {
-	const [theme, setTheme] = React.useState("light");
+	const [storedTheme, setStoredTheme] = useLocalStorage("dark-mode", "light");
+	const [theme, setTheme] = React.useState(storedTheme);
+
+	const setAndStoreTheme = (t: string) => {
+		setTheme(t);
+		setStoredTheme(t);
+	};
+
 	React.useEffect(() => {
 		applyTheme("base");
 	})
+
 	return (
-		<ThemeContext.Provider value={{ theme, setTheme }}>
+		<DarkModeContext.Provider value={{ theme, setTheme: setAndStoreTheme }}>
 			<div className={`${theme}`}>
 				{/* <Sidebar /> */}
 
@@ -28,8 +37,8 @@ const App = () => {
 					leftMaxWidth={200}
 				/>
 			</div>
-		</ThemeContext.Provider>
+		</DarkModeContext.Provider>
 	);
 }
 
-export { App, ThemeContext };
+export { App, DarkModeContext };

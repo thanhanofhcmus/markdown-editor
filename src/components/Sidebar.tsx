@@ -1,12 +1,12 @@
 import * as React from "react";
-import { ThemeContext } from "./App";
+import { DarkModeContext } from "../App";
 import { DiReact, DiAngularSimple, DiVisualstudio, DiClojure } from "react-icons/di";
 import { BsSunFill, BsMoonFill } from "react-icons/bs";
 
 
 const Sidebar = () => {
 	const ICON_SIZE = 28;
-	const { theme, setTheme } = React.useContext(ThemeContext);
+	const { theme, setTheme } = React.useContext(DarkModeContext);
 	const [themeIcon, setThemeIcon] = React.useState(<BsSunFill size={ICON_SIZE - 8}/>);
 
 	const toggleTheme = () => {

@@ -1,11 +1,10 @@
 import * as React from "react";
-import { ChangeThemeButton } from "./ChangeThemeButton";
+import { DarkModeToggler } from "./DarkModeToggler";
 import { DiReact } from "react-icons/di";
 
 export const NavBar = () => {
 	return (
-		<div className="flex-1 flex flex-col
-		transition
+		<div className="flex-1 flex flex-col transition
 		bg-bg-light text-fg-light
 		dark:bg-bg-dark dark:text-fg-dark">
 			<nav className="px-4 flex justify-between h-[5vh] border-b-2">
@@ -28,7 +27,7 @@ export const NavBar = () => {
 				{/* Right*/}
 				<ul className="flex items-center">
 					<li>
-						<ChangeThemeButton />
+						<DarkModeToggler />
 					</li>
 				</ul>
 			</nav>
