@@ -4,25 +4,22 @@ import { ThemeContext } from "./App";
 import { BsSunFill, BsMoonFill } from "react-icons/bs";
 
 export const ChangeThemeButton = () => {
+	const SIZE = 16
 	const { theme, setTheme } = React.useContext(ThemeContext);
-	const [themeIcon, setThemeIcon] = React.useState(<BsSunFill/>);
+	const [themeIcon, setThemeIcon] = React.useState(<BsSunFill size={SIZE}/>);
 
 	const toggleTheme = () => {
 		if (theme === "light") {
 			setTheme("dark");
-			setThemeIcon(<BsMoonFill/>);
+			setThemeIcon(<BsMoonFill size={SIZE}/>);
 		} else {
 			setTheme("light");
-			setThemeIcon(<BsSunFill/>);
+			setThemeIcon(<BsSunFill size={SIZE}/>);
 		}
 	}
 
 	return (
 		<IconButton
-		className="border-[1px] border-fg-light dark:border-fg-dark
-		rounded-md
-		transition ease-in duration-150
-		"
 		icon={themeIcon}
 		onClick={toggleTheme} />
 	)
