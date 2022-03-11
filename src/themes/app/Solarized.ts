@@ -6,4 +6,5 @@ import { IAppTheme } from ".";
 export const Solarized: IAppTheme = {
 	...fromMonacoThemeToLightTheme(SolarizedLight),
 	...fromMonacoThemeToDarkTheme(SolarizedDark),
+	name: "Solarized",
 }

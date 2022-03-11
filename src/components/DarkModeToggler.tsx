@@ -1,11 +1,11 @@
 import * as React from "react";
 import { IconButton } from "./IconButton";
-import { DarkModeContext } from "../App";
+import { ThemeContext } from "../App";
 import { BsSunFill, BsMoonFill } from "react-icons/bs";
 
 export const DarkModeToggler = () => {
 	const SIZE = 16
-	const { darkMode, setDarkMode } = React.useContext(DarkModeContext);
+	const { darkMode, setDarkMode } = React.useContext(ThemeContext);
 	const [themeIcon, setThemeIcon] = React.useState(<BsSunFill size={SIZE}/>);
 
 	const toggleTheme = () => {

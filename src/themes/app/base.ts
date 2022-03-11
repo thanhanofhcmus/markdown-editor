@@ -1,6 +1,7 @@
 import { IAppTheme } from ".";
 
 export const base: IAppTheme = {
+	name: "base",
 	foregroundLight: "#000000", // black
 	backgroundLight: "#FFFFFF", // white
 	foregroundLightSecondary: "#000000", // black

@@ -5,6 +5,7 @@ export interface IEditorTheme extends editor.IStandaloneThemeData {
 }
 
 export interface IAppTheme {
+	name: string;
 	foregroundLight?: string;
 	backgroundLight?: string;
 	foregroundLightSecondary?: string;
@@ -13,8 +14,8 @@ export interface IAppTheme {
 	backgroundDark?: string;
 	foregroundDarkSecondary?: string;
 	backgroundDarkSecondary?: string;
-	editorLightTheme?: editor.IStandaloneThemeData;
-	editorDarkTheme?: editor.IStandaloneThemeData;
+	editorLightTheme?: IEditorTheme;
+	editorDarkTheme?: IEditorTheme;
 };
 
 export interface IMappedAppTheme {
@@ -36,9 +37,10 @@ export const mapTheme = (vars: IAppTheme): IMappedAppTheme => {
 	}
 }
 
-export const fromMonacoThemeToLightTheme = (editorTheme: editor.IStandaloneThemeData): IAppTheme => {
+export const fromMonacoThemeToLightTheme = (editorTheme: IEditorTheme): IAppTheme => {
 	const colors = editorTheme.colors;
 	return {
+		name: editorTheme.name,
 		foregroundLight: colors["editor.foreground"],
 		backgroundLight: colors["editor.background"],
 		foregroundLightSecondary: colors["editorWhitespace.foreground"],
@@ -47,9 +49,10 @@ export const fromMonacoThemeToLightTheme = (editorTheme: editor.IStandaloneTheme
 	}
 }
 
-export const fromMonacoThemeToDarkTheme = (editorTheme: editor.IStandaloneThemeData): IAppTheme => {
+export const fromMonacoThemeToDarkTheme = (editorTheme: IEditorTheme): IAppTheme => {
 	const colors = editorTheme.colors;
 	return {
+		name: editorTheme.name,
 		foregroundDark: colors["editor.foreground"],
 		backgroundDark: colors["editor.background"],
 		foregroundDarkSecondary: colors["editorWhitespace.foreground"],
