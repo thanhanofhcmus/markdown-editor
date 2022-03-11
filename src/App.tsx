@@ -1,34 +1,32 @@
 import * as React from "react";
-// import { Sidebar } from "./Sidebar";
 import { ContentContainer } from "./components/ContentContainer";
 import { SplitView } from "./components/SplitView";
 import { ChannelBar } from "./components/ChannelBar";
-import { applyTheme } from "./themes/utils";
+import { applyAppTheme } from "./themes/app";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { Solarized } from "./themes/app/Solarized";
 
 const DarkModeContext = React.createContext({
-	theme: "",
-	setTheme: (_: string) => { } // placeholder
+	darkMode: "",
+	setDarkMode: (_: string) => { } // placeholder
 });
 
 const App = () => {
-	const [storedTheme, setStoredTheme] = useLocalStorage("dark-mode", "light");
-	const [theme, setTheme] = React.useState(storedTheme);
+	const [storedDarkMode, setStoredDarkMode] = useLocalStorage("dark-mode", "light");
+	const [darkMode, setDarkMode] = React.useState(storedDarkMode);
 
-	const setAndStoreTheme = (t: string) => {
-		setTheme(t);
-		setStoredTheme(t);
+	const setAndStoredDarkMode = (t: string) => {
+		setDarkMode(t);
+		setStoredDarkMode(t);
 	};
 
 	React.useEffect(() => {
-		applyTheme("base");
+		applyAppTheme(Solarized);
 	})
 
 	return (
-		<DarkModeContext.Provider value={{ theme, setTheme: setAndStoreTheme }}>
-			<div className={`${theme} overflow-hidden`}>
-				{/* <Sidebar /> */}
-
+		<DarkModeContext.Provider value={{ darkMode,  setDarkMode: setAndStoredDarkMode }}>
+			<div className={`${darkMode} overflow-hidden`}>
 				<SplitView
 					left={<ChannelBar />}
 					right={<ContentContainer />}

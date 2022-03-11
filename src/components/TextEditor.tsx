@@ -1,7 +1,8 @@
 import * as React from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
-import { SolarizedDark } from "../themes/Solarized-Dark";
-import { Dracula } from "../themes/Dracular";
+import { SolarizedDark } from "../themes/editor/Solarized-Dark";
+import { SolarizedLight } from "../themes/editor/SolarizedLight";
+import { Dracula } from "../themes/editor/Dracula";
 
 export const TextEditor = () => {
 	const monaco = useMonaco();
@@ -10,9 +11,10 @@ export const TextEditor = () => {
 		if (!monaco) {
 			return;
 		}
-		monaco.editor.defineTheme("Solarized-Dark", SolarizedDark)
-		monaco.editor.defineTheme("Dracula", Dracula)
-		monaco.editor.setTheme("Dracula");
+		monaco.editor.defineTheme(SolarizedLight.name, SolarizedLight)
+		monaco.editor.defineTheme(SolarizedDark.name, SolarizedDark)
+		monaco.editor.defineTheme(Dracula.name, Dracula)
+		monaco.editor.setTheme(SolarizedDark.name);
 	}, [monaco]);
 
 	return (

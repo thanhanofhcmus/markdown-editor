@@ -1,6 +1,7 @@
-import { editor } from "monaco-editor/esm/vs/editor/editor.api"
+import { IEditorTheme } from "../app"
 
-export const SolarizedDark : editor.IStandaloneThemeData = {
+export const SolarizedDark : IEditorTheme = {
+  "name": "SolarizedDark",
   "base": "vs-dark",
   "inherit": true,
   "rules": [

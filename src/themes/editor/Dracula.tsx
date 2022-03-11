@@ -1,6 +1,7 @@
-import { editor } from "monaco-editor/esm/vs/editor/editor.api"
+import { IEditorTheme } from "../app"
 
-export const Dracula: editor.IStandaloneThemeData = {
+export const Dracula: IEditorTheme = {
+  "name": "Dracula",
   "base": "vs-dark",
   "inherit": true,
   "rules": [
