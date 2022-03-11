@@ -11,7 +11,7 @@ export const NavBar = () => {
 				{/* Left */}
 				<ul className="flex items-center justify-center">
 					<li className="h-6 w-6">
-						<DiReact size={24} />
+						{/* <DiReact size={24} /> */}
 					</li>
 				</ul>
 
@@ -19,7 +19,7 @@ export const NavBar = () => {
 				<ul className="flex items-center">
 					<li>
 						<h1 className="pl-8 lg:pl-0">
-							My App
+						Markdown Editor
 						</h1>
 					</li>
 				</ul>

@@ -12,6 +12,7 @@
     "@types/node": "^16.11.26",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",
+    "highlight.js": "^11.4.0",
     "marked": "^4.0.12",
     "monaco-editor": "^0.32.1",
     "react": "^17.0.2",
