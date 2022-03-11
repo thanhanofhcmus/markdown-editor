@@ -1,6 +1,5 @@
 import * as React from "react";
 import { DarkModeToggler } from "./DarkModeToggler";
-import { DiReact } from "react-icons/di";
 
 export const NavBar = () => {
 	return (
