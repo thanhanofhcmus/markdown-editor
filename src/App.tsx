@@ -18,7 +18,7 @@ const App = () => {
 	const [theme, setTheme] = useLocalStorage('theme', Solarized);
 
 	React.useEffect(() => {
-		applyAppTheme(Solarized);
+		applyAppTheme(theme);
 	})
 
 	return (

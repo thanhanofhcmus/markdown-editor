@@ -43,7 +43,7 @@ export const fromMonacoThemeToLightTheme = (editorTheme: IEditorTheme): IAppThem
 		name: editorTheme.name,
 		foregroundLight: colors["editor.foreground"],
 		backgroundLight: colors["editor.background"],
-		foregroundLightSecondary: colors["editorWhitespace.foreground"],
+		foregroundLightSecondary: colors["editorCursor.foreground"],
 		backgroundLightSecondary: colors["editor.selectionBackground"],
 		editorLightTheme: editorTheme,
 	}
@@ -55,7 +55,7 @@ export const fromMonacoThemeToDarkTheme = (editorTheme: IEditorTheme): IAppTheme
 		name: editorTheme.name,
 		foregroundDark: colors["editor.foreground"],
 		backgroundDark: colors["editor.background"],
-		foregroundDarkSecondary: colors["editorWhitespace.foreground"],
+		foregroundDarkSecondary: colors["editorCursor.foreground"],
 		backgroundDarkSecondary: colors["editor.selectionBackground"],
 		editorDarkTheme: editorTheme,
 	}
