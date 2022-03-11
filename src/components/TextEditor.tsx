@@ -40,7 +40,11 @@ export const TextEditor = ({ setText}: Props) => {
 		<Editor
 		height="95vh"
 		language="markdown"
-		options={{ minimap: { enabled: false } }}
+		options={{
+			fontSize: 14,
+			fontFamily: "SFMono Nerd Font",
+			minimap: { enabled: false }
+		}}
 		onChange={onChange}
 		/>
 	)
