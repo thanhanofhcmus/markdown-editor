@@ -26,7 +26,7 @@ const App = () => {
 
 	return (
 		<DarkModeContext.Provider value={{ theme, setTheme: setAndStoreTheme }}>
-			<div className={`${theme}`}>
+			<div className={`${theme} overflow-hidden`}>
 				{/* <Sidebar /> */}
 
 				<SplitView
