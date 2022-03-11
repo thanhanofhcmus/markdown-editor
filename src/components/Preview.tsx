@@ -1,10 +1,19 @@
+import { marked } from "marked";
+interface Props {
+	value: string
+}
 
-export const Preview = () => {
+export const Preview = ({ value }: Props) => {
+	const html = marked.parse(value);
 	return (
-		<div className="bg-bg-light-secondary text-fg-light-secondary
+		<div className="h-[95vh] overflow-auto px-3 py-1
+		bg-bg-light-secondary text-fg-light-secondary
 		dark:text-fg-dark-secondary dark:bg-bg-dark-secondary
-		h-screen p-3 font-bold">
-			PREVIEW
+		unreset
+		"
+		dangerouslySetInnerHTML={{__html: html}}
+		>
+			{/* {html} */}
 		</div>
 	);
 };

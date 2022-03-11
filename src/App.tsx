@@ -5,6 +5,7 @@ import { ChannelBar } from "./components/ChannelBar";
 import { applyAppTheme, IAppTheme } from "./themes/app";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { Solarized } from "./themes/app/Solarized";
+import { Dracula } from "./themes/app/Dracula";
 
 const ThemeContext = React.createContext({
 	darkMode: "",
@@ -15,7 +16,7 @@ const ThemeContext = React.createContext({
 
 const App = () => {
 	const [darkMode, setDarkMode] = useLocalStorage("dark-mode", "light");
-	const [theme, setTheme] = useLocalStorage('theme', Solarized);
+	const [theme, setTheme] = useLocalStorage('theme', Dracula);
 
 	React.useEffect(() => {
 		applyAppTheme(theme);

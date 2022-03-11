@@ -5,7 +5,11 @@ import { SolarizedDark } from "../themes/editor/Solarized-Dark";
 import { SolarizedLight } from "../themes/editor/SolarizedLight";
 import { Dracula } from "../themes/editor/Dracula";
 
-export const TextEditor = () => {
+interface Props {
+	setText: React.Dispatch<React.SetStateAction<string>>
+}
+
+export const TextEditor = ({ setText}: Props) => {
 	const monaco = useMonaco();
 
 	const { darkMode, theme } = React.useContext(ThemeContext);
@@ -30,11 +34,14 @@ export const TextEditor = () => {
 		}
 	}, [monaco, theme, darkMode]);
 
+	const onChange = (value: string | undefined, _: any) => { value && setText(value)};
+
 	return (
 		<Editor
 		height="95vh"
 		language="markdown"
 		options={{ minimap: { enabled: false } }}
+		onChange={onChange}
 		/>
 	)
 }
