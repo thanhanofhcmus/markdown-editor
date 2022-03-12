@@ -1,4 +1,29 @@
 code.hljs {
 	font-family: "SFMono Nerd Font";
+	font-size: small;
 	border-radius: 5px;
+}
+
+.markdown-preview table, .markdown-preview th, .markdown-preview td {
+	border: 1px solid var(--color-fg-light);
+	border-collapse: collapse;
+}
+
+.dark .markdown-preview table, .dark .markdown-preview th, .dark .markdown-preview td {
+	border-color: var(--color-fg-dark);
+}
+
+.markdown-preview th, .markdown-preview td {
+	padding: 6px 13px;
+}
+
+.markdown-preview blockquote {
+	font-style: italic;
+	border-left: 3px solid gray;
+	padding-left: 10px;
+	margin: 0px 0.5em;
+}
+
+.markdown-preview a {
+	color: rgb(12, 105, 211)
 }

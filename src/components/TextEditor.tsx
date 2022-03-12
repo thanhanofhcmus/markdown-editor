@@ -46,6 +46,7 @@ export const TextEditor = ({ setText}: Props) => {
 			minimap: { enabled: false }
 		}}
 		onChange={onChange}
+		className="border-r-[1px] border-r-fg-light-secondary dark:border-r-fg-dark-secondary"
 		/>
 	)
 }

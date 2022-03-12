@@ -31,10 +31,10 @@ export const Preview = ({ value }: Props) => {
 	}, [ref]);
 	
 	return (
-		<div className="h-[95vh] overflow-auto px-3 py-1
+		<div className="h-[95vh] overflow-y-auto px-3 py-1
 		bg-bg-light-secondary text-fg-light-secondary
 		dark:text-fg-dark-secondary dark:bg-bg-dark-secondary
-		unreset"
+		markdown-preview unreset"
 		dangerouslySetInnerHTML={{__html: marked.parse(value)}}
 		ref={ref}
 		>
