@@ -52,7 +52,7 @@ export class Renderer extends marked.Renderer {
 		}
 
 		code = code.replace(/\n$/, '') + '\n';
-		return `<pre><code class="relative hljs code-block language whitespace-pre-line -${lang ? escape(lang, true) : 'none'}">`
+		return `<pre><code class="whitespace-pre-wrap relative hljs code-block language-${lang ? escape(lang, true) : 'none'}">`
 			+ (isEscaped ? code : escape(code, true))
 			+ COPY_ICON
 			+ '</code></pre>\n';
