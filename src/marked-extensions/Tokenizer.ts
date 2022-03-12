@@ -5,11 +5,11 @@ export const Emoji: marked.TokenizerExtension & marked.RendererExtension = {
   name: 'emoji',
   level: 'inline',
   start(src) {
-    const match = src.match(/:/);
+    const match = src.match(/:.*:/);
     return match ? (match.index ? match.index : -1) : -1;
   },
   tokenizer(src) {
-    const rule = /:[\d\w]+:/;
+    const rule = /^:[\d\w]+:/; //don't forget to match from start of line with '^'
     const match = rule.exec(src);
     if (match) {
       return {

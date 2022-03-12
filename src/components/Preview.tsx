@@ -17,14 +17,15 @@ interface Props {
 }
 
 export const Preview = ({ value }: Props) => {
-
+	const html = marked.parse(value);
 	return (
 		<div className="h-[95vh] overflow-x-auto px-3 py-1
 		bg-bg-light-secondary text-fg-light-secondary
 		dark:text-fg-dark-secondary dark:bg-bg-dark-secondary
 		markdown-preview unreset"
-			dangerouslySetInnerHTML={{ __html: marked.parse(value) }}
+			dangerouslySetInnerHTML={{ __html: html }}
 		>
+			{/* {html} */}
 		</div>
 	);
 };
