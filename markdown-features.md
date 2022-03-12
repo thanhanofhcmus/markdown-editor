@@ -1,5 +1,4 @@
 This is an example note.
-You can write notes in [GitHub-flavored Markdown](http://doc.inkdrop.info/manual/markdown-cheatsheet).
 
 # H1
 ## H2
@@ -10,13 +9,15 @@ You can write notes in [GitHub-flavored Markdown](http://doc.inkdrop.info/manual
 
 ## Emphasis
 
-Emphasis, aka italics, with *asterisks* or _underscores_.
+Emphasis aka italic: `*asterisks* or _underscores_` *asterisks* or _underscores_
 
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+Strong: `**asterisks** or __underscores__` **asterisks** or __underscores__
 
-Combined emphasis with **asterisks and _underscores_**.
+Emphasis  an strong: `**asterisks and _underscores_**` **asterisks and _underscores_**
 
-Strikethrough uses two tildes. ~~Scratch this.~~
+Strikethrough: `~~Scratch this.~~` ~~Scratch this.~~
+
+Highlight: `==highlight==`  ==highlight==
 
 ## Lists
 
@@ -72,6 +73,16 @@ Reference-style:
 
 [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 
+
+## Emoji
+
+You can insert emoji using unicode or it's github shortname.
+For example, `:tent:` will make a :tent:, while `:U+1F44B:` will make :U+1F44B:.
+
+You can find list of shortname [here](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#flags)
+and list of unicode names [from this link](https://unicode.org/emoji/charts/full-emoji-list.html).
+
+
 ## Code and Syntax Highlighting
 
 Inline `code` has `back-ticks around` it.
@@ -89,6 +100,32 @@ print s
 ```
 No language indicated, so no syntax highlighting. 
 ```
+
+## HTML tags
+
+HTML tags are **not sanitized** (this is intentional). Use set can put any tag they want. For example:
+
+`<strong>strong</strong>` will create <strong>strong</strong> and have the same effect as **strong**.
+
+`<input></input>` will create <input></input>
+
+`<button onclick="alert('hello')" style="border: black solid 2px;>click me<button>`
+will create <button onclick="alert('hello')" style="border: black solid 2px">click me<button> 
+
+
+```html
+<button
+    onclick="alert('hello')"
+    style="border: black solid 2px; border-radius: 5px; padding: 3px 2px"
+>
+    click me
+<button>
+```
+will create
+<button onclick="alert('hello')" style="border: black solid 2px; border-radius: 5px; padding: 3px 2px">click me<button>
+
+**Use this at you own risk.**
+
 
 ## Tables
 
@@ -108,7 +145,7 @@ raw Markdown line up prettily. You can also use inline Markdown.
 Markdown | Less | Pretty
 --- | --- | ---
 *Still* | `renders` | **nicely**
-1 | 2 | 3
+==hello== | 2 | 3
 
 ## Blockquotes
 
@@ -139,7 +176,8 @@ Underscores
 
 Here's a line for us to start with.
 
-This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
+This line and other lines under it
+only separated by one new line character
+so it still a one line.
 
-This line is also a separate paragraph, but...
-This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
+This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
