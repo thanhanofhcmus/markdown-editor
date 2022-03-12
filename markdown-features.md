@@ -109,8 +109,10 @@ HTML tags are **not sanitized** (this is intentional). Use set can put any tag t
 
 `<input></input>` will create <input></input>
 
-`<button onclick="alert('hello')" style="border: black solid 2px;>click me<button>`
-will create <button onclick="alert('hello')" style="border: black solid 2px">click me<button> 
+```html
+<button onclick="alert('hello')" style="border: black solid 2px;">click me</button>
+```
+will create <button onclick="alert('hello')" style="border: black solid 2px">click me</button> 
 
 
 ```html
@@ -119,10 +121,10 @@ will create <button onclick="alert('hello')" style="border: black solid 2px">cli
     style="border: black solid 2px; border-radius: 5px; padding: 3px 2px"
 >
     click me
-<button>
+</button>
 ```
 will create
-<button onclick="alert('hello')" style="border: black solid 2px; border-radius: 5px; padding: 3px 2px">click me<button>
+<button onclick="alert('hello')" style="border: black solid 2px; border-radius: 5px; padding: 3px 2px">click me</button>
 
 **Use this at you own risk.**
 
