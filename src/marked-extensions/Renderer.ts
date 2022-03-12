@@ -52,12 +52,7 @@ export class Renderer extends marked.Renderer {
 		}
 
 		code = code.replace(/\n$/, '') + '\n';
-
-		if (!lang) {
-			return `<pre><code>${(isEscaped ? code : escape(code, true))}</code></pre>\n`;
-		}
-
-		return `<pre><code class="relative hljs code-block language-${escape(lang, true)}">`
+		return `<pre><code class="relative hljs code-block language-${lang ? escape(lang, true) : 'none'}">`
 			+ (isEscaped ? code : escape(code, true))
 			+ COPY_ICON
 			+ '</code></pre>\n';

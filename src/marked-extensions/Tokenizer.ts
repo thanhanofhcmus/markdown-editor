@@ -46,6 +46,6 @@ export const EqualHighlight: MarkedExtension = {
   renderer(token) {
     const tokens = token.inlineTokens;
     return `<span class="text-fg-light bg-bg-light dark:text-fg-dark dark:bg-bg-dark
-    rounded-md px-1 py-1 m-0 text-base shadow-md drop-shadow-sm">${this.parser.parseInline(tokens, new marked.Renderer())}</span>`;
+    rounded-md px-1 py-1 m-0 shadow-md drop-shadow-sm">${this.parser.parseInline(tokens, new marked.Renderer())}</span>`;
   }
 }

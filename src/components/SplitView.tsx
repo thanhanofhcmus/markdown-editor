@@ -37,6 +37,7 @@ export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMax
 	const [leftWidth, setLeftWidth] = React.useState<number | undefined>(defaultLeftWidth);
 	const [sepXPos, setSepXPos] = React.useState<number | undefined>(undefined);
 	const [dragging, setDragging] = React.useState(false);
+	const ref = React.createRef<HTMLDivElement>();
 
 
 	const onMouseDown = (e: React.MouseEvent) => {
@@ -82,9 +83,20 @@ export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMax
 		}
 	});
 
+	React.useEffect(() => {
+		if (!ref.current) {
+			return;
+		}
+
+		const { width }= ref.current.getBoundingClientRect();
+		if (!leftWidth) {
+			setLeftWidth(width / 2);
+		}
+	}, [leftWidth, ref])
+
 
 	return (
-		<div className="flex flex-row items-start">
+		<div className="flex flex-row items-start" ref={ref}>
 			<LeftPanel
 				leftWidth={leftWidth}
 				setLeftWidth={setLeftWidth}

@@ -27,3 +27,7 @@ code.hljs {
 .markdown-preview a {
 	color: rgb(12, 105, 211)
 }
+
+.markdown-preview li::marker {
+	font-weight: bold;
+}

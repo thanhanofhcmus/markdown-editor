@@ -13,7 +13,6 @@ export const ContentContainer = () => {
 			<SplitView
 			left={<TextEditor setText={setText}/>}
 			right={<Preview value={text}/>}
-			defaultLeftWidth={800}
 			/>
 		</div>
 
