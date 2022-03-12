@@ -1,7 +1,7 @@
 import 'highlight.js/styles/nord.css';
 import { marked } from "marked";
 import { Renderer } from "../marked-extensions/Renderer";
-import { Emoji } from "../marked-extensions/Tokenizer";
+import { Emoji, EqualHighlight } from "../marked-extensions/Tokenizer";
 
 marked.setOptions({
 	langPrefix: "hljs code-block language-",
@@ -10,7 +10,7 @@ marked.setOptions({
 	renderer: new Renderer(),
 });
 
-marked.use({ extensions: [Emoji]});
+marked.use({ extensions: [Emoji, EqualHighlight]});
 
 interface Props {
 	value: string

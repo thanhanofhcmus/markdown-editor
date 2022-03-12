@@ -6,7 +6,7 @@ const useStored = <T>(key: string, initValue: T) => {
 			const item = window.localStorage.getItem(key);
 			return item ? JSON.parse(item) : initValue;
 		} catch (e) {
-			console.log(`useLocalStorage: ${e}`)
+			console.error(`useLocalStorage: ${e}`)
 			return initValue;
 		}
 	});
@@ -17,7 +17,7 @@ const useStored = <T>(key: string, initValue: T) => {
 			setStoredValue(valueToStore);
 			window.localStorage.setItem(key, JSON.stringify(valueToStore));
 		} catch (e) {
-			console.log(`useLocalStorage: ${e}`)
+			console.error(`useLocalStorage: ${e}`)
 		}
 	};
 
