@@ -31,6 +31,7 @@ const App = () => {
 					defaultLeftWidth={150}
 					leftMinWidth={60}
 					leftMaxWidth={200}
+					separatorClassName="h-screen"
 				/>
 			</div>
 		</ThemeContext.Provider>

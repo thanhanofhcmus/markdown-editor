@@ -31,9 +31,10 @@ interface SplitViewProps {
 	defaultLeftWidth?: number;
 	leftMinWidth?: number;
 	leftMaxWidth?: number;
+	separatorClassName?: string;
 }
 
-export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMaxWidth }: SplitViewProps) => {
+export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMaxWidth, separatorClassName }: SplitViewProps) => {
 	const [leftWidth, setLeftWidth] = React.useState<number | undefined>(defaultLeftWidth);
 	const [sepXPos, setSepXPos] = React.useState<number | undefined>(undefined);
 	const [dragging, setDragging] = React.useState(false);
@@ -103,8 +104,8 @@ export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMax
 			>
 				{left}
 			</LeftPanel>
-			<div className={`cursor-col-resize flex self-stretch items-center
-			border-2 h-screen transition
+			<div className={`cursor-col-resize border-2 transition
+			${separatorClassName ?? ''}
 			${dragging
 				? "border-blue-500"
 				: "border-bg-light-secondary dark:border-bg-dark-secondary" }

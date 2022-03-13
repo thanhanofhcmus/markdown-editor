@@ -9,11 +9,12 @@ export const ContentContainer = () => {
 
 	return (
 		<div className="h-screen">
-			<NavBar />
 			<SplitView
 			left={<TextEditor setText={setText}/>}
 			right={<Preview value={text}/>}
+			separatorClassName="h-[95vh]"
 			/>
+			<NavBar />
 		</div>
 
 	)
