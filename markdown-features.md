@@ -74,15 +74,6 @@ Reference-style:
 [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 
 
-## Emoji
-
-You can insert emoji using unicode or it's github shortname.
-For example, `:tent:` will make a :tent:, while `:U+1F44B:` will make :U+1F44B:.
-
-You can find list of shortname [here](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#flags)
-and list of unicode names [from this link](https://unicode.org/emoji/charts/full-emoji-list.html).
-
-
 ## Code and Syntax Highlighting
 
 Inline `code` has `back-ticks around` it.
@@ -100,34 +91,6 @@ print s
 ```
 No language indicated, so no syntax highlighting. 
 ```
-
-## HTML tags
-
-HTML tags are **not sanitized** (this is intentional). Use set can put any tag they want. For example:
-
-`<strong>strong</strong>` will create <strong>strong</strong> and have the same effect as **strong**.
-
-`<input></input>` will create <input></input>
-
-```html
-<button onclick="alert('hello')" style="border: black solid 2px;">click me</button>
-```
-will create <button onclick="alert('hello')" style="border: black solid 2px">click me</button> 
-
-
-```html
-<button
-    onclick="alert('hello')"
-    style="border: black solid 2px; border-radius: 5px; padding: 3px 2px"
->
-    click me
-</button>
-```
-will create
-<button onclick="alert('hello')" style="border: black solid 2px; border-radius: 5px; padding: 3px 2px">click me</button>
-
-**Use this at you own risk.**
-
 
 ## Tables
 
@@ -183,3 +146,65 @@ only separated by one new line character
 so it still a one line.
 
 This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
+
+## Emoji
+
+You can insert emoji using unicode or it's github shortname.
+For example, `:tent:` will make a :tent:, while `:U+1F44B:` will make :U+1F44B:.
+
+You can find list of shortname [here](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#flags)
+and list of unicode names [from this link](https://unicode.org/emoji/charts/full-emoji-list.html).
+
+## Commands
+
+Commands can be inserted insert a 'double colon' pair, i.e `::command_name::`.
+
+Commands can have optional options, inserted after command name and separated by a colon
+and separated from each other by a pipe. i.e `::command_name:op_1|op_2::
+
+Currently supported commands:
+
+### Table Of Content
+
+use `::table_of_content::`.
+
+Example: 
+
+::table_of_content::
+
+Options:
+
+All supported css properties: `font-weight`, `font-style`, `text-decoration-line` and `text-decoration-style`.
+
+If you want to exclude any tag, use `h{n}_exclude`
+
+Example of using options:
+
+::table_of_content:h1_underline|h2_line-through|h2_medium|h3_exclude|h4_extrabold|h5_thin::
+
+## HTML tags
+
+HTML tags are **not sanitized** (this is intentional). Use set can put any tag they want. For example:
+
+`<strong>strong</strong>` will create <strong>strong</strong> and have the same effect as **strong**.
+
+`<input></input>` will create <input></input>
+
+```html
+<button onclick="alert('hello')" style="border: black solid 2px;">click me</button>
+```
+will create <button onclick="alert('hello')" style="border: black solid 2px">click me</button> 
+
+
+```html
+<button
+    onclick="alert('hello')"
+    style="border: black solid 2px; border-radius: 5px; padding: 3px 2px"
+>
+    click me
+</button>
+```
+will create
+<button onclick="alert('hello')" style="border: black solid 2px; border-radius: 5px; padding: 3px 2px">click me</button>
+
+**Use this at you own risk.**
