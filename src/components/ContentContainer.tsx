@@ -3,16 +3,22 @@ import { NavBar } from "./NavBar";
 import { TextEditor } from "./TextEditor";
 import { SplitView } from "./SplitView";
 import { Preview } from "./Preview";
+import { GlobalContext } from "../App";
 
-export const ContentContainer = () => {
-		const [text, setText] = React.useState("");
+interface Props {
+	text?: string;
+	setText: (text: string) => void;
+}
+
+export const ContentContainer = ({ text, setText }: Props) => {
+	const { viewMode } = React.useContext(GlobalContext);
 
 	return (
 		<div className="h-screen">
 			<SplitView
-			left={<TextEditor setText={setText}/>}
-			right={<Preview value={text}/>}
-			separatorClassName="h-[95vh]"
+				left={viewMode !== "preview" ? <TextEditor text={text} setText={setText} /> : undefined}
+				right={viewMode !== "editor" ? <Preview value={text || ''} /> : undefined}
+				separatorClassName="h-[95vh]"
 			/>
 			<NavBar />
 		</div>

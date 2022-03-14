@@ -1,18 +1,19 @@
 import * as React from "react";
-import { ThemeContext } from "../App";
+import { GlobalContext } from "../App";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { SolarizedDark } from "../themes/editor/Solarized-Dark";
 import { SolarizedLight } from "../themes/editor/SolarizedLight";
 import { Dracula } from "../themes/editor/Dracula";
 
 interface Props {
-	setText: React.Dispatch<React.SetStateAction<string>>
+	text?: string;
+	setText: (text: string) => void
 }
 
-export const TextEditor = ({ setText}: Props) => {
+export const TextEditor = ({ text, setText }: Props) => {
 	const monaco = useMonaco();
 
-	const { darkMode, theme } = React.useContext(ThemeContext);
+	const { darkMode, theme } = React.useContext(GlobalContext);
 
 	React.useEffect(() => {
 		if (!monaco) {
@@ -34,18 +35,20 @@ export const TextEditor = ({ setText}: Props) => {
 		}
 	}, [monaco, theme, darkMode]);
 
-	const onChange = (value: string | undefined, _: any) => { value && setText(value)};
+	const onChange = (value: string | undefined) => { value && setText(value)};
 
 	return (
 		<Editor
 		height="95vh"
 		language="markdown"
+		value={text}
 		options={{
 			fontSize: 14,
 			fontFamily: "SFMono Nerd Font",
 			minimap: { enabled: false }
 		}}
 		onChange={onChange}
+		theme={darkMode === "light" ? theme.editorLightTheme?.name : theme.editorDarkTheme?.name}
 		className="border-r-[1px] border-r-fg-light-secondary dark:border-r-fg-dark-secondary"
 		/>
 	)

@@ -25,16 +25,30 @@ const LeftPanel = ({ leftWidth, setLeftWidth, children }: LeftPanelProps) => {
 	return (<div ref={leftRef}>{children}</div>);
 };
 
+interface SingleViewProps {
+	view: React.ReactElement;
+}
+
+const SingleView = ({ view }: SingleViewProps) => {
+	return (
+		<div>
+			{view}
+		</div>
+	)
+
+}
+
 interface SplitViewProps {
-	left: React.ReactElement;
-	right: React.ReactElement;
+	left?: React.ReactElement;
+	right?: React.ReactElement;
 	defaultLeftWidth?: number;
 	leftMinWidth?: number;
 	leftMaxWidth?: number;
 	separatorClassName?: string;
 }
 
-export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMaxWidth, separatorClassName }: SplitViewProps) => {
+export const SplitViewInternal = ({ left, right, defaultLeftWidth, leftMinWidth, leftMaxWidth, separatorClassName }: SplitViewProps) => {
+
 	const [leftWidth, setLeftWidth] = React.useState<number | undefined>(defaultLeftWidth);
 	const [sepXPos, setSepXPos] = React.useState<number | undefined>(undefined);
 	const [dragging, setDragging] = React.useState(false);
@@ -108,7 +122,7 @@ export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMax
 			${separatorClassName ?? ''}
 			${dragging
 				? "border-blue-500"
-				: "border-bg-light-secondary dark:border-bg-dark-secondary" }
+				: "border-gray-600 dark:border-gray-200" }
 			`}
 				onMouseDown={onMouseDown}
 			>
@@ -117,3 +131,30 @@ export const SplitView = ({ left, right, defaultLeftWidth, leftMinWidth, leftMax
 		</div>
 	);
 };
+
+export const SplitView = (props: SplitViewProps) => {
+	const { left, right } = props;
+
+	if (left && !right) {
+		return (
+			<SingleView view={left} />
+		);
+	}
+	if (right && !left) {
+		return (
+			<SingleView view={right} />
+		);
+	}
+
+	return (
+		<SplitViewInternal
+		left={left}
+		right={right}
+		defaultLeftWidth={props.defaultLeftWidth}
+		leftMaxWidth={props.leftMaxWidth}
+		leftMinWidth={props.leftMinWidth}
+		separatorClassName={props.separatorClassName}
+		/>
+	)
+	
+}

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const ChannelBar = () => {
+export const FileBar = () => {
 
 	return (
 		<div className="p-3 h-screen transition
