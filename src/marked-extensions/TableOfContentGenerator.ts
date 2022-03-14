@@ -19,6 +19,7 @@ export interface IHeadingOption {
 
 export interface IGlobalOptions extends IHeadingOption {
 	indent?: number;
+	noLink?: boolean;
 };
 
 export interface ITableOfContentOptions {
@@ -63,6 +64,8 @@ const processHeadingModifier = (option: IHeadingOption, modi: string) => {
 			option.fontWeight = "300"; break;
 		case "medium":
 			option.fontWeight = "500"; break;
+		case "ordinary":
+			option.fontWeight = "400"; break;
 		case "semibold":
 			option.fontWeight = "600"; break;
 		case "bold":
@@ -74,9 +77,11 @@ const processHeadingModifier = (option: IHeadingOption, modi: string) => {
 	}
 }
 
-const processGlobalModifier  = (option: IGlobalOptions, modi: string) => {
+const processGlobalModifier = (option: IGlobalOptions, modi: string) => {
 	if (modi.startsWith("indent_")) {
 		option.indent = parseInt(modi.slice(7)) || 0;
+	} else if (modi === "no_link") {
+		option.noLink = true;
 	} else {
 		processHeadingModifier(option, modi);
 	}
@@ -151,8 +156,10 @@ const makeHTMLLink = ({ id, level, text }: IHeadingData, option: IHeadingOption,
 	styles += makeStyle("text-decoration-style", option.decorationStyle, globalOptions.decorationStyle);
 
 	const marginLeft = `margin-left: ${(globalOptions.indent ? Math.min(10, Math.max(0, level + globalOptions.indent)) : level) * 0.5}rem; `;
+	const halfOpenTag = globalOptions.noLink ? "<span " : `<a href="#${id}"`;
+	const CloseTag = globalOptions.noLink ? "</span>" : "</a>";
 
-	return `<p style="margin: 0px; padding: 0px;"><a href="#${id}" style="${marginLeft} ${styles}">${text}</a></p>\n`;
+	return `<p style="margin: 0px; padding: 0px;">${halfOpenTag} style="${marginLeft} ${styles}">${text}${CloseTag}</p>\n`;
 }
 
 export const generateTableOfContent = (options: string[]) => {
