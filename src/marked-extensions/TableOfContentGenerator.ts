@@ -27,6 +27,10 @@ export interface ITableOfContentOptions {
 	options: IHeadingOption[];
 }
 
+let headingCounter = 0; // to generate unique id for each heading
+
+export const resetHeadingCounter = () => { headingCounter = 0; }
+
 const TOBData: ITableOfContent = {
 	headings: [],
 };
@@ -109,7 +113,10 @@ const processOptions = (options: string[]): ITableOfContentOptions => {
 	return ops;
 }
 
-export const makeHeadingID = (level: number, text: string) => `hd:${level}-title:${text}`;
+export const makeHeadingID = (level: number, text: string) => {
+	headingCounter += 1;
+	return `c:${headingCounter}-hd:${level}-title:${text}`;
+}
 
 const parseHeadingData = (src: string): IHeadingData | undefined => {
 	const match = src.match(/^(#{1,6}) (.*)/);
@@ -130,9 +137,7 @@ export const parseHeading = (src: string): void => {
 		if (!item) {
 			break;
 		}
-		if (!headings.some(h => h.id === item.id)) {
-			headings.push(item);
-		}
+		headings.push(item);
 		next = iter.next();
 	}
 	TOBData.headings = headings;

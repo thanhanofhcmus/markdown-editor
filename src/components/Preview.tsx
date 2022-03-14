@@ -2,7 +2,7 @@ import 'highlight.js/styles/nord.css';
 import { marked } from "marked";
 import { Renderer } from "../marked-extensions/Renderer";
 import { Emoji, EqualHighlight, Command } from "../marked-extensions/Tokenizer";
-import { parseHeading } from "../marked-extensions/TableOfContentGenerator";
+import { resetHeadingCounter, parseHeading } from "../marked-extensions/TableOfContentGenerator";
 
 marked.setOptions({
 	langPrefix: "hljs code-block language-",
@@ -18,7 +18,9 @@ interface Props {
 }
 
 export const Preview = ({ value }: Props) => {
+	resetHeadingCounter();
 	parseHeading(value);
+	resetHeadingCounter();
 	const html = marked.parse(value);
 	return (
 		<div className="h-[95vh] overflow-x-auto px-3 py-1
