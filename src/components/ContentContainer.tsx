@@ -19,6 +19,8 @@ export const ContentContainer = ({ text, setText }: Props) => {
 				left={viewMode !== "preview" ? <TextEditor text={text} setText={setText} /> : undefined}
 				right={viewMode !== "editor" ? <Preview value={text || ''} /> : undefined}
 				separatorClassName="h-[95vh]"
+				leftMinWidth={200}
+				leftMaxWidth={1200}
 			/>
 			<NavBar />
 		</div>

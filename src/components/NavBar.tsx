@@ -1,25 +1,16 @@
 import * as React from "react";
 import { DarkModeToggler } from "./DarkModeToggler";
 import { IconButton } from "./IconButton";
-import { RiSideBarFill, RiSideBarLine, RiPencilFill, RiLayout4Fill, RiEyeFill } from "react-icons/ri";
+import { RiSideBarFill, RiPencilFill, RiLayout4Fill, RiEyeFill, RiSettings3Fill } from "react-icons/ri";
 import { GlobalContext } from "../App";
 
 export const NavBar = () => {
 	const SIZE = 20;
 	const { fileBarOpen, setFileBarOpen } = React.useContext(GlobalContext);
-	const [fileBarIcon, setFileBarIcon] = React.useState(<RiSideBarLine size={SIZE}/>);
-
 	const { viewMode, setViewMode } = React.useContext(GlobalContext);
+	const [menuOpen, setMenuOpen] = React.useState(false);
 
-	const toggleFileBar = () => {
-		if (fileBarOpen) {
-			setFileBarOpen(false);
-			setFileBarIcon(<RiSideBarLine size={SIZE} />);
-		} else {
-			setFileBarOpen(true);
-			setFileBarIcon(<RiSideBarFill size={SIZE} />);
-		}
-	}
+	const opacity = (isActive: boolean) => isActive ? 1.0 : 0.5;
 
 	return (
 		<div className="flex-1 flex flex-col transition
@@ -32,8 +23,8 @@ export const NavBar = () => {
 				<ul className="flex items-center justify-center">
 					<li>
 						<IconButton
-						icon={fileBarIcon}
-						onClick={toggleFileBar} />
+							icon={<RiSideBarFill size={SIZE} opacity={opacity(fileBarOpen)} />}
+							onClick={() => { setFileBarOpen(!fileBarOpen); }} />
 					</li>
 				</ul>
 
@@ -41,7 +32,7 @@ export const NavBar = () => {
 				<ul className="flex items-center">
 					<li>
 						<h1 className="pl-8 lg:pl-0">
-						Markdown Editor
+							Markdown Editor
 						</h1>
 					</li>
 				</ul>
@@ -50,24 +41,42 @@ export const NavBar = () => {
 				<ul className="flex items-center space-x-4">
 					<li>
 						<IconButton
-						icon={<RiPencilFill size={SIZE} opacity={viewMode === "editor" ? 1 : 0.7}/>}
-						onClick={() => setViewMode("editor")}
+							icon={<RiPencilFill size={SIZE} opacity={opacity(viewMode === "editor")} />}
+							onClick={() => setViewMode("editor")}
 						/>
 					</li>
 					<li>
 						<IconButton
-						icon={<RiLayout4Fill size={SIZE} opacity={viewMode === "both" ? 1 : 0.7}/>}
-						onClick={() => setViewMode("both")}
+							icon={<RiLayout4Fill size={SIZE} opacity={opacity(viewMode === "both")} />}
+							onClick={() => setViewMode("both")}
 						/>
 					</li>
 					<li>
 						<IconButton
-						icon={<RiEyeFill size={SIZE} opacity={viewMode === "preview" ? 1 : 0.7}/>}
-						onClick={() => setViewMode("preview")}
+							icon={<RiEyeFill size={SIZE} opacity={opacity(viewMode === "preview")} />}
+							onClick={() => setViewMode("preview")}
 						/>
 					</li>
 					<li>
 						<DarkModeToggler />
+					</li>
+					<li className="relative">
+						<IconButton
+							icon={<RiSettings3Fill size={SIZE} opacity={opacity(menuOpen)} />}
+							onClick={() => setMenuOpen(!menuOpen)}
+						/>
+						<div className={`absolute px-5 py-3 bottom-12 right-2 w-max rounded-md
+						origin-bottom-right transition duration-150
+						text-fg-light bg-bg-light dark:text-fg-dark dark:bg-bg-dark
+						border-2 border-fg-light dark:border-fg-dark
+						${menuOpen ? "scale-100" : "scale-0"}
+						`}>
+							<ul>
+								<li className="my-4">App theme</li>
+								<li className="my-4">Editor theme</li>
+								<li className="my-4">Sync app theme with editor theme</li>
+							</ul>
+						</div>
 					</li>
 				</ul>
 			</nav>
