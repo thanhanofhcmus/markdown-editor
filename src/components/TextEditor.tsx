@@ -28,10 +28,10 @@ export const TextEditor = ({ text, setText }: Props) => {
 		if (!monaco) {
 			return;
 		}
-		if (darkMode === "light" && theme.editorLightTheme) {
-			monaco.editor.setTheme(theme.editorLightTheme.name);
-		} else if (theme.editorDarkTheme) {
-			monaco.editor.setTheme(theme.editorDarkTheme.name);
+		if (darkMode === "light") {
+				monaco.editor.setTheme(theme.editorLightTheme?.name ?? "light");
+		} else {
+			monaco.editor.setTheme(theme.editorDarkTheme?.name ?? "vs-dark");
 		}
 	}, [monaco, theme, darkMode]);
 
@@ -48,7 +48,7 @@ export const TextEditor = ({ text, setText }: Props) => {
 			minimap: { enabled: false }
 		}}
 		onChange={onChange}
-		theme={darkMode === "light" ? theme.editorLightTheme?.name : theme.editorDarkTheme?.name}
+		theme={darkMode === "light" ? (theme.editorLightTheme?.name ?? "light") : (theme.editorDarkTheme?.name ?? "vs-dark")}
 		className="border-r-[1px] border-r-fg-light-secondary dark:border-r-fg-dark-secondary"
 		/>
 	)

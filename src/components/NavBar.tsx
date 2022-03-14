@@ -7,7 +7,7 @@ import { GlobalContext } from "../App";
 export const NavBar = () => {
 	const SIZE = 20;
 	const { fileBarOpen, setFileBarOpen } = React.useContext(GlobalContext);
-	const [fileBarIcon, setFileBarIcon] = React.useState(<RiSideBarFill size={SIZE}/>);
+	const [fileBarIcon, setFileBarIcon] = React.useState(<RiSideBarLine size={SIZE}/>);
 
 	const { viewMode, setViewMode } = React.useContext(GlobalContext);
 
@@ -17,7 +17,7 @@ export const NavBar = () => {
 			setFileBarIcon(<RiSideBarLine size={SIZE} />);
 		} else {
 			setFileBarOpen(true);
-			setFileBarIcon(<RiSideBarFill size={SIZE}/>);
+			setFileBarIcon(<RiSideBarFill size={SIZE} />);
 		}
 	}
 
@@ -25,7 +25,7 @@ export const NavBar = () => {
 		<div className="flex-1 flex flex-col transition
 		bg-bg-light text-fg-light
 		dark:bg-bg-dark dark:text-fg-dark
-		border-2 border-t-gray-200 dark:border-t-gray-600
+		border-2 border-x-0 border-t-gray-200 dark:border-t-gray-600
 		">
 			<nav className="px-4 flex justify-between h-[5vh] border-0">
 				{/* Left */}

@@ -11,7 +11,7 @@ marked.setOptions({
 	renderer: new Renderer(),
 });
 
-marked.use({ extensions: [Command, Emoji, EqualHighlight,]});
+marked.use({ extensions: [Command, Emoji, EqualHighlight,] });
 
 interface Props {
 	value: string
@@ -23,13 +23,14 @@ export const Preview = ({ value }: Props) => {
 	resetHeadingCounter();
 	const html = marked.parse(value);
 	return (
-		<div className="h-[95vh] overflow-x-auto px-3 py-1
-		bg-bg-light-secondary text-fg-light-secondary
-		dark:text-fg-dark-secondary dark:bg-bg-dark-secondary
-		markdown-preview unreset"
-			dangerouslySetInnerHTML={{ __html: html }}
-		>
-			{/* {html} */}
+		<div className="flex justify-center overflow-x-auto bg-bg-light-secondary dark:bg-bg-dark-secondary">
+			<div className="h-[95vh] px-3 py-1 max-w-4xl
+			bg-bg-light-secondary text-fg-light-secondary
+			dark:text-fg-dark-secondary dark:bg-bg-dark-secondary
+			markdown-preview unreset"
+				dangerouslySetInnerHTML={{ __html: html }}
+			>
+			</div>
 		</div>
 	);
 };

@@ -6,7 +6,7 @@ import { applyAppTheme, IAppTheme } from "./themes/app";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { Solarized } from "./themes/app/Solarized";
 import { IGlobalContext, DarkMode, ViewMode } from "./globalConfig";
-// import { Dracula } from "./themes/app/Dracula";
+import { Dracula } from "./themes/app/Dracula";
 
 const GlobalContext = React.createContext<IGlobalContext>({
 	darkMode: "light",
@@ -21,7 +21,7 @@ const GlobalContext = React.createContext<IGlobalContext>({
 
 const App = () => {
 	const [darkMode, setDarkMode] = useLocalStorage<DarkMode>("dark-mode", "light");
-	const [theme, setTheme] = useLocalStorage('theme', Solarized);
+	const [theme, setTheme] = useLocalStorage('theme', Dracula);
 	const [fileBarOpen, setFileBarOpen] = useLocalStorage("file-bar-open", true);
 	const [viewMode, setViewMode] = useLocalStorage<ViewMode>("view-mode", "both");
 	const [text, setText] = React.useState("");

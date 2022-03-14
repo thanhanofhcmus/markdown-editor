@@ -122,7 +122,7 @@ export const SplitViewInternal = ({ left, right, defaultLeftWidth, leftMinWidth,
 			${separatorClassName ?? ''}
 			${dragging
 				? "border-blue-500"
-				: "border-gray-600 dark:border-gray-200" }
+				: "border-slate-200 dark:border-gray-500" }
 			`}
 				onMouseDown={onMouseDown}
 			>
