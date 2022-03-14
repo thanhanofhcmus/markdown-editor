@@ -109,12 +109,16 @@ const processOptions = (options: string[]): ITableOfContentOptions => {
 	return ops;
 }
 
+export const makeHeadingID = (level: number, text: string) => `hd:${level}-title:${text}`;
+
 const parseHeadingData = (src: string): IHeadingData | undefined => {
 	const match = src.match(/^(#{1,6}) (.*)/);
 	if (!match) {
 		return;
 	}
-	return { id: match[2], text: match[2], level: match[1].length };
+	const text = match[2];
+	const level = match[1].length;
+	return { id: makeHeadingID(level, text), text, level };
 }
 
 export const parseHeading = (src: string): void => {
