@@ -166,7 +166,9 @@ Currently supported commands:
 
 ### Table Of Content
 
-use `::table_of_content::`.
+Use `::table_of_content::`.
+
+Content of the table will be all heading tag
 
 Example: 
 

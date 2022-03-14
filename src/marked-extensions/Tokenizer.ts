@@ -12,12 +12,12 @@ export const Command: MarkedExtension = {
     return match ? (match.index ? match.index : -1) : -1;
   },
   tokenizer(src) {
-    const match = src.match(/^::([\w\d-]+)(:[\w\d|-]+)?::/)
+    const match = src.match(/^::([\w\d-]+)(:[\w\d|#-]+)?::/)
     if (match) {
       const command = match[1];
       const options: string[] = [];
       if (match[2]) {
-        const iter = match[2].slice(1).matchAll(/[\w\d-]+/g);
+        const iter = match[2].slice(1).matchAll(/[\w\d#-]+/g);
         for (const [item] of iter) {
           options.push(item);
         }
