@@ -5,16 +5,18 @@ import { BsSunFill, BsMoonFill } from "react-icons/bs";
 
 export const DarkModeToggler = () => {
 	const SIZE = 16
+	const SUN_ICON = <BsSunFill size={SIZE} />;
+	const MOON_ICON = <BsMoonFill size={SIZE} />;
 	const { darkMode, setDarkMode } = React.useContext(GlobalContext);
-	const [themeIcon, setThemeIcon] = React.useState(<BsSunFill size={SIZE}/>);
+	const [themeIcon, setThemeIcon] = React.useState(darkMode === "light" ? SUN_ICON : MOON_ICON);
 
 	const toggleTheme = () => {
 		if (darkMode === "light") {
 			setDarkMode("dark");
-			setThemeIcon(<BsMoonFill size={SIZE}/>);
+			setThemeIcon(MOON_ICON);
 		} else {
 			setDarkMode("light");
-			setThemeIcon(<BsSunFill size={SIZE}/>);
+			setThemeIcon(SUN_ICON);
 		}
 	}
 
