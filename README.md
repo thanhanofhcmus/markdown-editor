@@ -2,9 +2,9 @@
 
 A simple markdown editor with preview.
 
-## Gallery
-
 Support Github flavored Markdown (GFM).
+
+## Gallery
 
 <br />
 
