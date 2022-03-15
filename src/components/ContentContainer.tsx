@@ -1,6 +1,6 @@
 import * as React from "react";
 import { NavBar } from "./NavBar";
-import { TextEditor } from "./TextEditor";
+import { TextEditor } from "./CodeMirror";
 import { SplitView } from "./SplitView";
 import { Preview } from "./Preview";
 import { GlobalContext } from "../App";
