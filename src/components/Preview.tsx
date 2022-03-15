@@ -24,7 +24,7 @@ export const Preview = ({ value }: Props) => {
 	const html = marked.parse(value);
 	return (
 		<div className="flex justify-center overflow-x-auto bg-bg-light-secondary dark:bg-bg-dark-secondary">
-			<div className="h-[95vh] px-3 py-1 max-w-4xl
+			<div className="h-[95vh] px-3 py-1 w-full max-w-4xl
 			bg-bg-light-secondary text-fg-light-secondary
 			dark:text-fg-dark-secondary dark:bg-bg-dark-secondary
 			markdown-preview unreset"
