@@ -13,11 +13,7 @@ marked.setOptions({
 
 marked.use({ extensions: [Command, Emoji, EqualHighlight,] });
 
-interface Props {
-	value: string
-}
-
-export const Preview = ({ value }: Props) => {
+export const Preview = ({ value }: { value: string }) => {
 	resetHeadingCounter();
 	parseHeading(value);
 	resetHeadingCounter();

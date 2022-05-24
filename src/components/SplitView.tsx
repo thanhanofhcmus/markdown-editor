@@ -1,58 +1,30 @@
 import * as React from "react";
+import { useState, useEffect, createRef, ReactNode, ReactElement } from "react";
 
 interface LeftPanelProps {
 	leftWidth?: number;
-	setLeftWidth: (value: number) => void;
-	children?: React.ReactNode;
+	children?: ReactNode;
 }
 
-const LeftPanel = ({ leftWidth, setLeftWidth, children }: LeftPanelProps) => {
-	const leftRef = React.createRef<HTMLDivElement>();
-
-	React.useEffect(() => {
-		if (!leftRef.current) {
-			return;
-		}
-
-		if (!leftWidth) {
-			setLeftWidth(leftRef.current?.clientWidth);
-			return;
-		}
-
-		leftRef.current.style.width = `${leftWidth}px`;
-	}, [leftRef, leftWidth, setLeftWidth])
-
-	return (<div ref={leftRef}>{children}</div>);
+const LeftPanel = ({ leftWidth, children }: LeftPanelProps) => {
+	return (<div style={{ width: leftWidth }}>{children}</div>);
 };
 
-interface SingleViewProps {
-	view: React.ReactElement;
-}
-
-const SingleView = ({ view }: SingleViewProps) => {
-	return (
-		<div>
-			{view}
-		</div>
-	)
-
-}
-
 interface SplitViewProps {
-	left?: React.ReactElement;
-	right?: React.ReactElement;
+	left?: ReactElement;
+	right?: ReactElement;
 	defaultLeftWidth?: number;
 	leftMinWidth?: number;
 	leftMaxWidth?: number;
 	separatorClassName?: string;
 }
 
-export const SplitViewInternal = ({ left, right, defaultLeftWidth, leftMinWidth, leftMaxWidth, separatorClassName }: SplitViewProps) => {
-
-	const [leftWidth, setLeftWidth] = React.useState<number | undefined>(defaultLeftWidth);
-	const [sepXPos, setSepXPos] = React.useState<number | undefined>(undefined);
-	const [dragging, setDragging] = React.useState(false);
-	const ref = React.createRef<HTMLDivElement>();
+const SplitViewInternal = (props: SplitViewProps) => {
+	const { left, right, defaultLeftWidth, leftMinWidth, leftMaxWidth, separatorClassName } = props;
+	const [leftWidth, setLeftWidth] = useState<number | undefined>(defaultLeftWidth);
+	const [sepXPos, setSepXPos] = useState<number | undefined>(undefined);
+	const [dragging, setDragging] = useState(false);
+	const ref = createRef<HTMLDivElement>();
 
 
 	const onMouseDown = (e: React.MouseEvent) => {
@@ -65,8 +37,8 @@ export const SplitViewInternal = ({ left, right, defaultLeftWidth, leftMinWidth,
 	};
 
 	const onMouseMove = (e: MouseEvent) => {
-		e.stopPropagation();
 		e.preventDefault();
+		e.stopPropagation();
 		e.cancelBubble = true;
 
 		if (dragging && leftWidth && sepXPos) {
@@ -88,7 +60,7 @@ export const SplitViewInternal = ({ left, right, defaultLeftWidth, leftMinWidth,
 		setDragging(false);
 	};
 
-	React.useEffect(() => {
+	useEffect(() => {
 		document.addEventListener("mousemove", onMouseMove);
 		document.addEventListener("mouseup", onMouseUp);
 
@@ -98,12 +70,12 @@ export const SplitViewInternal = ({ left, right, defaultLeftWidth, leftMinWidth,
 		}
 	});
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (!ref.current) {
 			return;
 		}
 
-		const { width }= ref.current.getBoundingClientRect();
+		const { width } = ref.current.getBoundingClientRect();
 		if (!leftWidth) {
 			setLeftWidth(width / 2);
 		}
@@ -112,17 +84,12 @@ export const SplitViewInternal = ({ left, right, defaultLeftWidth, leftMinWidth,
 
 	return (
 		<div className="flex flex-row items-start" ref={ref}>
-			<LeftPanel
-				leftWidth={leftWidth}
-				setLeftWidth={setLeftWidth}
-			>
+			<LeftPanel leftWidth={leftWidth}>
 				{left}
 			</LeftPanel>
 			<div className={`cursor-col-resize border-2 transition
 			${separatorClassName ?? ''}
-			${dragging
-				? "border-blue-500"
-				: "border-slate-200 dark:border-gray-500" }
+			${dragging ? "border-blue-500" : "border-slate-200 dark:border-gray-500"}
 			`}
 				onMouseDown={onMouseDown}
 			>
@@ -135,26 +102,18 @@ export const SplitViewInternal = ({ left, right, defaultLeftWidth, leftMinWidth,
 export const SplitView = (props: SplitViewProps) => {
 	const { left, right } = props;
 
-	if (left && !right) {
-		return (
-			<SingleView view={left} />
-		);
-	}
-	if (right && !left) {
-		return (
-			<SingleView view={right} />
-		);
-	}
+	if (left && !right) { return left; }
+	if (right && !left) { return right; }
 
 	return (
 		<SplitViewInternal
-		left={left}
-		right={right}
-		defaultLeftWidth={props.defaultLeftWidth}
-		leftMaxWidth={props.leftMaxWidth}
-		leftMinWidth={props.leftMinWidth}
-		separatorClassName={props.separatorClassName}
+			left={left}
+			right={right}
+			defaultLeftWidth={props.defaultLeftWidth}
+			leftMaxWidth={props.leftMaxWidth}
+			leftMinWidth={props.leftMinWidth}
+			separatorClassName={props.separatorClassName}
 		/>
 	)
-	
+
 }

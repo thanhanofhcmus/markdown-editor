@@ -35,7 +35,7 @@ const escape = (html: string, encode: boolean) => {
 	}
 
 	return html;
-}
+};
 
 export class Renderer extends marked.Renderer {
 

@@ -29,13 +29,13 @@ export interface ITableOfContentOptions {
 
 let headingCounter = 0; // to generate unique id for each heading
 
-export const resetHeadingCounter = () => { headingCounter = 0; }
+export const resetHeadingCounter = (): void => { headingCounter = 0; }
 
 const TOBData: ITableOfContent = {
 	headings: [],
 };
 
-const processHeadingModifier = (option: IHeadingOption, modi: string) => {
+const processHeadingModifier = (option: IHeadingOption, modi: string): void => {
 	if (modi.startsWith("color_")) {
 		const color = modi.slice(6);
 		if (CSS.supports('color', color)) {
@@ -81,7 +81,7 @@ const processHeadingModifier = (option: IHeadingOption, modi: string) => {
 	}
 }
 
-const processGlobalModifier = (option: IGlobalOptions, modi: string) => {
+const processGlobalModifier = (option: IGlobalOptions, modi: string): void => {
 	if (modi.startsWith("indent_")) {
 		option.indent = parseInt(modi.slice(7)) || 0;
 	} else if (modi === "no_link") {
@@ -113,7 +113,7 @@ const processOptions = (options: string[]): ITableOfContentOptions => {
 	return ops;
 }
 
-export const makeHeadingID = (level: number, text: string) => {
+export const makeHeadingID = (level: number, text: string): string => {
 	headingCounter += 1;
 	return `c:${headingCounter}-hd:${level}-title:${text}`;
 }
@@ -143,7 +143,7 @@ export const parseHeading = (src: string): void => {
 	TOBData.headings = headings;
 }
 
-const makeHTMLLink = ({ id, level, text }: IHeadingData, option: IHeadingOption, globalOptions: IGlobalOptions) => {
+const makeHTMLLink = ({ id, level, text }: IHeadingData, option: IHeadingOption, globalOptions: IGlobalOptions): string => {
 	if (option.exclude) {
 		return "\n";
 	}

@@ -27,4 +27,4 @@ export const TextEditor = ({ text, setText }: Props) => {
       onChange={value => { setText(value); }}
     />
   );
-}
+};

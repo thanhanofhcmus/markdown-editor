@@ -20,9 +20,5 @@ export const DarkModeToggler = () => {
 		}
 	}
 
-	return (
-		<IconButton
-		icon={themeIcon}
-		onClick={toggleTheme} />
-	)
+	return (<IconButton icon={themeIcon} onClick={toggleTheme} />);
 };

@@ -24,6 +24,5 @@ export const ContentContainer = ({ text, setText }: Props) => {
 			/>
 			<NavBar />
 		</div>
-
-	)
+	);
 };

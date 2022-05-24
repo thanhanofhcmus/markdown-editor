@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useContext } from "react";
 import { DarkModeToggler } from "./DarkModeToggler";
 import { IconButton } from "./IconButton";
 import { RiSideBarFill, RiPencilFill, RiLayout4Fill, RiEyeFill, RiSettings3Fill } from "react-icons/ri";
@@ -6,9 +7,9 @@ import { GlobalContext } from "../App";
 
 export const NavBar = () => {
 	const SIZE = 20;
-	const { fileBarOpen, setFileBarOpen } = React.useContext(GlobalContext);
-	const { viewMode, setViewMode } = React.useContext(GlobalContext);
-	const [menuOpen, setMenuOpen] = React.useState(false);
+	const { fileBarOpen, setFileBarOpen } = useContext(GlobalContext);
+	const { viewMode, setViewMode } = useContext(GlobalContext);
+	const [menuOpen, setMenuOpen] = useState(false);
 
 	const opacity = (isActive: boolean) => isActive ? 1.0 : 0.5;
 
@@ -81,5 +82,5 @@ export const NavBar = () => {
 				</ul>
 			</nav>
 		</div>
-	)
-}
+	);
+};
