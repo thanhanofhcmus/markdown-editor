@@ -48,8 +48,8 @@ export class Renderer extends marked.Renderer {
 	}
 
 	code(this: marked.Renderer<never> | marked.RendererThis, code: string, language: string | undefined, isEscaped: boolean): string {
-
 		const lang = ((language || '').match(/\S*/) || [])[0];
+		// @ts-ignore
 		const out = hljs.highlightAuto(code, [lang]).value;
 		if (out != null && out !== code) {
 			isEscaped = true;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/tailwind.css';
-import "./css/unreset.min.css"
+import "./css/unreset.css"
 import "./css/markdown.css";
 import { App } from './App';
 
