@@ -1,1 +1,1 @@
-declare module "monaco-vim";
+declare module 'monaco-vim';

@@ -1,28 +1,30 @@
-import * as React from "react";
-import { NavBar } from "./NavBar";
-import { TextEditor } from "./CodeMirror";
-import { SplitView } from "./SplitView";
-import { Preview } from "./Preview";
-import { GlobalContext } from "../App";
+import * as React from 'react';
+
+import { GlobalContext } from '../globalConfig';
+
+import NavBar from './NavBar';
+import Preview from './Preview';
+import SplitView from './SplitView';
+import TextEditor from './TextEditor';
 
 interface Props {
-	text?: string;
-	setText: (text: string) => void;
+  text?: string;
+  setText: (text: string) => void;
 }
 
-export const ContentContainer = ({ text, setText }: Props) => {
-	const { viewMode } = React.useContext(GlobalContext);
+export default function ContentContainer({ text = '', setText }: Props) {
+  const { viewMode } = React.useContext(GlobalContext);
 
-	return (
-		<div className="h-screen">
-			<SplitView
-				left={viewMode !== "preview" ? <TextEditor text={text} setText={setText} /> : undefined}
-				right={viewMode !== "editor" ? <Preview value={text || ''} /> : undefined}
-				separatorClassName="h-[95vh]"
-				leftMinWidth={200}
-				leftMaxWidth={1200}
-			/>
-			<NavBar />
-		</div>
-	);
-};
+  return (
+    <div className="h-screen">
+      <SplitView
+        left={viewMode === 'preview' ? undefined : <TextEditor text={text} setText={setText} />}
+        right={viewMode === 'editor' ? undefined : <Preview value={text || ''} />}
+        separatorClassName="h-[95vh]"
+        leftMinWidth={200}
+        leftMaxWidth={1200}
+      />
+      <NavBar />
+    </div>
+  );
+}

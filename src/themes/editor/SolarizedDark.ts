@@ -1,16 +1,16 @@
 import { IEditorTheme } from '../app';
 
-const SolarizedLight: IEditorTheme = {
-  name: 'Solarized-Light',
-  base: 'vs',
+const SolarizedDark: IEditorTheme = {
+  name: 'SolarizedDark',
+  base: 'vs-dark',
   inherit: true,
   rules: [
     {
-      background: 'FDF6E3',
+      background: '002B36',
       token: '',
     },
     {
-      foreground: '93a1a1',
+      foreground: '586e75',
       token: 'comment',
     },
     {
@@ -42,8 +42,7 @@ const SolarizedLight: IEditorTheme = {
       token: 'keyword',
     },
     {
-      foreground: '073642',
-      fontStyle: 'bold',
+      foreground: '859900',
       token: 'storage',
     },
     {
@@ -100,15 +99,15 @@ const SolarizedLight: IEditorTheme = {
       token: 'entity.name.tag',
     },
     {
-      foreground: '93a1a1',
+      foreground: '586e75',
       token: 'punctuation.definition.tag.html',
     },
     {
-      foreground: '93a1a1',
+      foreground: '586e75',
       token: 'punctuation.definition.tag.begin',
     },
     {
-      foreground: '93a1a1',
+      foreground: '586e75',
       token: 'punctuation.definition.tag.end',
     },
     {
@@ -482,6 +481,10 @@ const SolarizedLight: IEditorTheme = {
       token: 'punctuation.definition.string.end',
     },
     {
+      foreground: '839496',
+      token: 'support.class.php',
+    },
+    {
       foreground: 'dc322f',
       token: 'keyword.operator.index-start.php',
     },
@@ -522,11 +525,7 @@ const SolarizedLight: IEditorTheme = {
       token: 'keyword.other.new.php',
     },
     {
-      foreground: '586e75',
-      token: 'support.class.php',
-    },
-    {
-      foreground: '586e75',
+      foreground: '839496',
       token: 'keyword.operator.class',
     },
     {
@@ -544,6 +543,10 @@ const SolarizedLight: IEditorTheme = {
     {
       foreground: 'b58900',
       token: 'keyword.operator.class.php',
+    },
+    {
+      foreground: '839496',
+      token: 'punctuation.terminator.expression.php',
     },
     {
       foreground: '586e75',
@@ -678,7 +681,7 @@ const SolarizedLight: IEditorTheme = {
     },
     {
       foreground: 'e0eddd',
-      background: 'a57706',
+      background: 'b58900',
       token: 'text.html.markdown meta.dummy.line-break',
     },
     {
@@ -955,12 +958,12 @@ const SolarizedLight: IEditorTheme = {
       token: 'markup.heading.6.markdown',
     },
     {
-      foreground: '586e75',
+      foreground: '839496',
       fontStyle: 'bold',
       token: 'markup.bold.markdown',
     },
     {
-      foreground: '586e75',
+      foreground: '839496',
       fontStyle: 'italic',
       token: 'markup.italic.markdown',
     },
@@ -1005,36 +1008,42 @@ const SolarizedLight: IEditorTheme = {
       token: 'meta.separator.markdown',
     },
     {
-      foreground: '839496',
+      foreground: '586e75',
+      fontStyle: 'italic',
+      token: 'meta.image.inline.markdown',
+    },
+    {
+      foreground: '586e75',
+      fontStyle: 'italic',
       token: 'markup.underline.link.markdown',
     },
     {
-      foreground: '839496',
-      token: 'markup.underline.link.markdown',
+      foreground: '93a1a1',
+      token: 'string.other.link.title.markdown',
     },
     {
-      foreground: 'dc322f',
-      token: 'meta.link.inet.markdown',
+      foreground: '93a1a1',
+      token: 'string.other.link.description.markdown',
     },
     {
-      foreground: 'dc322f',
-      token: 'meta.link.email.lt-gt.markdown',
-    },
-    {
-      foreground: 'dc322f',
-      token: 'punctuation.definition.string.begin.markdown',
-    },
-    {
-      foreground: 'dc322f',
-      token: 'punctuation.definition.string.end.markdown',
-    },
-    {
-      foreground: 'dc322f',
+      foreground: '586e75',
       token: 'punctuation.definition.link.markdown',
     },
     {
-      foreground: '6a8187',
-      token: 'text.plain',
+      foreground: '586e75',
+      token: 'punctuation.definition.metadata.markdown',
+    },
+    {
+      foreground: '586e75',
+      token: 'punctuation.definition.string.begin.markdown',
+    },
+    {
+      foreground: '586e75',
+      token: 'punctuation.definition.string.end.markdown',
+    },
+    {
+      foreground: '586e75',
+      token: 'punctuation.definition.constant.markdown',
     },
     {
       foreground: 'eee8d5',
@@ -1070,13 +1079,13 @@ const SolarizedLight: IEditorTheme = {
     },
   ],
   colors: {
-    'editor.foreground': '#586E75',
-    'editor.background': '#FDF6E3',
-    'editor.selectionBackground': '#EEE8D5',
-    'editor.lineHighlightBackground': '#EEE8D5',
-    'editorCursor.foreground': '#000000',
-    'editorWhitespace.foreground': '#EAE3C9',
+    'editor.foreground': '#839496',
+    'editor.background': '#002B36',
+    'editor.selectionBackground': '#073642',
+    'editor.lineHighlightBackground': '#073642',
+    'editorCursor.foreground': '#819090',
+    'editorWhitespace.foreground': '#073642',
   },
 };
 
-export default SolarizedLight;
+export default SolarizedDark;
