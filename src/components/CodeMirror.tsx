@@ -5,7 +5,9 @@ interface Props {
   setText: (text: string) => void
 }
 
-export const TextEditor = (_: Props) => {
+export const TextEditor = ({ setText }: Props) => {
+  setText("# This is a H1");
+
   return (
       <div>Text Editor</div>
   )
