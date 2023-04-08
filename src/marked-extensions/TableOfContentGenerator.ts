@@ -2,11 +2,11 @@ interface IHeadingData {
 	level: number;
 	text: string;
 	id: string;
-};
+}
 
 interface ITableOfContent {
 	headings: IHeadingData[];
-};
+}
 
 export interface IHeadingOption {
 	exclude?: boolean;
@@ -15,12 +15,12 @@ export interface IHeadingOption {
 	decorationStyle?: string;
 	decorationLine?: string;
 	color?: string;
-};
+}
 
 export interface IGlobalOptions extends IHeadingOption {
 	indent?: number;
 	noLink?: boolean;
-};
+}
 
 export interface ITableOfContentOptions {
 	global: IGlobalOptions;
@@ -35,31 +35,31 @@ const TOBData: ITableOfContent = {
 	headings: [],
 };
 
-const processHeadingModifier = (option: IHeadingOption, modi: string): void => {
-	if (modi.startsWith("color_")) {
-		const color = modi.slice(6);
+const processHeadingModifier = (option: IHeadingOption, modification: string): void => {
+	if (modification.startsWith("color_")) {
+		const color = modification.slice(6);
 		if (CSS.supports('color', color)) {
 			option.color = color;
 		}
 	}
-	switch (modi) {
+	switch (modification) {
 		case "exclude":
 			option.exclude = true; break;
 		case "none":
 		case "underline":
 		case "overline":
 		case "line-through":
-			option.decorationLine = modi; break
+			option.decorationLine = modification; break
 		case "solid":
 		case "double":
 		case "dotted":
 		case "dashed":
 		case "wavy":
-			option.decorationStyle = modi; break;
+			option.decorationStyle = modification; break;
 		case "normal":
 		case "italic":
 		case "oblique":
-			option.fontStyle = modi; break;
+			option.fontStyle = modification; break;
 		case "thin":
 			option.fontWeight = "100"; break;
 		case "extralight":
@@ -81,13 +81,13 @@ const processHeadingModifier = (option: IHeadingOption, modi: string): void => {
 	}
 }
 
-const processGlobalModifier = (option: IGlobalOptions, modi: string): void => {
-	if (modi.startsWith("indent_")) {
-		option.indent = parseInt(modi.slice(7)) || 0;
-	} else if (modi === "no_link") {
+const processGlobalModifier = (option: IGlobalOptions, modification: string): void => {
+	if (modification.startsWith("indent_")) {
+		option.indent = parseInt(modification.slice(7)) || 0;
+	} else if (modification === "no_link") {
 		option.noLink = true;
 	} else {
-		processHeadingModifier(option, modi);
+		processHeadingModifier(option, modification);
 	}
 }
 
@@ -95,7 +95,7 @@ const processOptions = (options: string[]): ITableOfContentOptions => {
 	const ops = { options: [{}, {}, {}, {}, {}, {}, {}], global: {} }
 	for (const [, option] of options.entries()) {
 		try {
-			const match = option.match(/^h([1-6])_([\w\d#-]+)|^toc_([\w\d#-]+)/);
+			const match = option.match(/^h([1-6])_([\w#-]+)|^toc_([\w#-]+)/);
 			if (!match) {
 				continue;
 			}
@@ -103,10 +103,10 @@ const processOptions = (options: string[]): ITableOfContentOptions => {
 				processGlobalModifier(ops.global, match[3]);
 			}
 			const level = parseInt(match[1]);
-			const modi = match[2];
-			processHeadingModifier(ops.options[level], modi);
+			const modification = match[2];
+			processHeadingModifier(ops.options[level], modification);
 		} catch (e) {
-			continue;
+
 		}
 
 	}
@@ -168,7 +168,7 @@ const makeHTMLLink = ({ id, level, text }: IHeadingData, option: IHeadingOption,
 	const halfOpenTag = globalOptions.noLink ? "<span " : `<a href="#${id}"`;
 	const CloseTag = globalOptions.noLink ? "</span>" : "</a>";
 
-	return `<p style="margin: 0px; padding: 0px;">${halfOpenTag} style="${marginLeft} ${styles}">${text}${CloseTag}</p>\n`;
+	return `<p style="margin: 0; padding: 0;">${halfOpenTag} style="${marginLeft} ${styles}">${text}${CloseTag}</p>\n`;
 }
 
 export const generateTableOfContent = (options: string[]) => {

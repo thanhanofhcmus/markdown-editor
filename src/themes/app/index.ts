@@ -16,7 +16,7 @@ export interface IAppTheme {
 	backgroundDarkSecondary?: string;
 	editorLightTheme?: IEditorTheme;
 	editorDarkTheme?: IEditorTheme;
-};
+}
 
 export interface IMappedAppTheme {
 	[key: string]: string | null;

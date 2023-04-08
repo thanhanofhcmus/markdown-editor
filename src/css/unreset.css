@@ -174,7 +174,6 @@ html.unreset {
 .unreset fieldset {
     border-style: groove;
     border-width: 2px;
-    border: 2px groove ThreeDFace;
     margin: 0 2px;
     padding: 0 2px 3px;
     -webkit-padding-before: 0.35em;

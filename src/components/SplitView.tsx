@@ -39,7 +39,6 @@ const SplitViewInternal = (props: SplitViewProps) => {
 	const onMouseMove = (e: MouseEvent) => {
 		e.preventDefault();
 		e.stopPropagation();
-		e.cancelBubble = true;
 
 		if (dragging && leftWidth && sepXPos) {
 			let newLeftWidth = leftWidth + e.clientX - sepXPos;

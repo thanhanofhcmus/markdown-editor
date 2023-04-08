@@ -13,4 +13,4 @@ export interface IGlobalContext {
 	setFileBarOpen: (open: boolean) => void;
 	viewMode: "editor" | "preview" | "both";
 	setViewMode: (mode: "editor" | "preview" | "both") => void;
-};
+}

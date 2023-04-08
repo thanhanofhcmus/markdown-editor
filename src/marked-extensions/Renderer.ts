@@ -7,7 +7,7 @@ const COPY_ICON = `<div class="absolute top-2 right-3 hover:scale-110""><svg str
 type Escapes = '&' | '<' | '>' | '"' | "'";
 type IEscapeMapped = {
 	[key in Escapes]: string;
-};;
+};
 
 const escapeTest = /[&<>"']/;
 const escapeReplace = /[&<>"']/g;
@@ -39,15 +39,15 @@ const escape = (html: string, encode: boolean) => {
 
 export class Renderer extends marked.Renderer {
 
-	heading(this: marked.Renderer<never> | marked.RendererThis, text: string, level: 1 | 2 | 3 | 4 | 5 | 6): string {
+	heading(this: marked.Renderer | marked.RendererThis, text: string, level: 1 | 2 | 3 | 4 | 5 | 6): string {
 		return `<h${level} id="${makeHeadingID(level, text)}">${text}</h${level}>`
 	}
 
-	codespan(this: marked.Renderer<never> | marked.RendererThis, code: string): string {
+	codespan(this: marked.Renderer | marked.RendererThis, code: string): string {
 		return `<code class="hljs">${code}</code>`;
 	}
 
-	code(this: marked.Renderer<never> | marked.RendererThis, code: string, language: string | undefined, isEscaped: boolean): string {
+	code(this: marked.Renderer | marked.RendererThis, code: string, language: string | undefined, isEscaped: boolean): string {
 		const lang = ((language || '').match(/\S*/) || [])[0];
 		// @ts-ignore
 		const out = hljs.highlightAuto(code, [lang]).value;
@@ -62,5 +62,4 @@ export class Renderer extends marked.Renderer {
 			+ COPY_ICON
 			+ '</code></pre>\n';
 	}
-
-};
+}

@@ -12,12 +12,12 @@ export const Command: MarkedExtension = {
     return match ? (match.index ? match.index : -1) : -1;
   },
   tokenizer(src) {
-    const match = src.match(/^::([\w\d-]+)(:[\w\d|#-]+)?::/)
+    const match = src.match(/^::([\w-]+)(:[\w|#-]+)?::/)
     if (match) {
       const command = match[1];
       const options: string[] = [];
       if (match[2]) {
-        const iter = match[2].slice(1).matchAll(/[\w\d#-]+/g);
+        const iter = match[2].slice(1).matchAll(/[\w#-]+/g);
         for (const [item] of iter) {
           options.push(item);
         }
@@ -46,7 +46,7 @@ export const Emoji: MarkedExtension = {
     return match ? (match.index ? match.index : -1) : -1;
   },
   tokenizer(src) {
-    const match = src.match(/^:U\+([\d\w]+):|^:([\d\w]+):/); //don't forget to match from start of line with '^'
+    const match = src.match(/^:U\+(\w+):|^:(\w+):/); //don't forget to match from start of line with '^'
     if (match) {
       return {
         type: "emoji",

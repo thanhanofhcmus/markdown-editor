@@ -6,7 +6,7 @@ interface Props {
 	width?: number;
 	height?: number;
 	onClick?: React.MouseEventHandler;
-};
+}
 
 export const IconButton = ({ icon, className, width, height, onClick }: Props) => {
 	return (
