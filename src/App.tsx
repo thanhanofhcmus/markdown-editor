@@ -3,16 +3,11 @@ import * as React from 'react';
 import ContentContainer from './components/ContentContainer';
 import FileBar from './components/FileBar';
 import SplitView from './components/SplitView';
-import { GlobalContext, DarkMode, ViewMode } from './globalConfig';
-import useLocalStorage from './hooks/useLocalStorage';
+import { GlobalContext, GlobalContextProvider } from './globalConfig';
 import { applyAppTheme } from './themes/app';
-import Dracula from './themes/app/Dracula';
 
 export default function App() {
-  const [darkMode, setDarkMode] = useLocalStorage<DarkMode>('dark-mode', 'light');
-  const [theme, setTheme] = useLocalStorage('theme', Dracula);
-  const [fileBarOpen, setFileBarOpen] = useLocalStorage('file-bar-open', true);
-  const [viewMode, setViewMode] = useLocalStorage<ViewMode>('view-mode', 'both');
+  const { darkMode, theme, fileBarOpen } = React.useContext(GlobalContext);
   const [text, setText] = React.useState('');
 
   React.useEffect(() => {
@@ -20,9 +15,7 @@ export default function App() {
   });
 
   return (
-    <GlobalContext.Provider
-      value={{ darkMode, setDarkMode, theme, setTheme, fileBarOpen, setFileBarOpen, viewMode, setViewMode }}
-    >
+    <GlobalContextProvider>
       <div className={`${darkMode} overflow-hidden`}>
         <SplitView
           left={fileBarOpen ? <FileBar /> : undefined}
@@ -33,6 +26,6 @@ export default function App() {
           separatorClassName="h-screen"
         />
       </div>
-    </GlobalContext.Provider>
+    </GlobalContextProvider>
   );
 }
