@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { GlobalContext } from '../globalConfig';
 
+import type { SetStateType } from '../types';
+
 import NavBar from './NavBar';
 import Preview from './Preview';
 import SplitView from './SplitView';
@@ -9,7 +11,7 @@ import TextEditor from './TextEditor';
 
 interface Props {
   text?: string;
-  setText: (text: string) => void;
+  setText: SetStateType<string>;
 }
 
 export default function ContentContainer({ text = '', setText }: Props) {

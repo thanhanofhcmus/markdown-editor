@@ -34,7 +34,7 @@ export const GlobalContext = React.createContext<IGlobalContext>({
 export function GlobalContextProvider({ children }: { children: React.ReactChild }) {
   const [darkMode, setDarkMode] = useLocalStorage<DarkMode>('dark-mode', 'light');
   const [theme, setTheme] = useLocalStorage('theme', Dracula);
-  const [fileBarOpen, setFileBarOpen] = useLocalStorage('file-bar-open', true);
+  const [fileBarOpen, setFileBarOpen] = useLocalStorage('file-bar-open', false);
   const [viewMode, setViewMode] = useLocalStorage<ViewMode>('view-mode', 'both');
 
   const value = React.useMemo<IGlobalContext>(() => ({
